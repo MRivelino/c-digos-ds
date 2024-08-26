@@ -1,0 +1,53 @@
+class InfoFunc{ 
+  late double salario, dia, salarioHora, falta, salTot; 
+
+  void setSalario(double v){ 
+    salario = v; 
+  } 
+  double getSalario(){ 
+    return salario; 
+  } 
+   
+  void setDia(double h){ 
+    dia = h; 
+  } 
+  double getDia(){ 
+    return dia; 
+  } 
+
+  void hFaltadas(){ 
+    falta = dia * 8; 
+  } 
+  double getFalta(){ 
+    return falta; 
+  } 
+
+  void salH(){ 
+    salarioHora = salario / (240); 
+  } 
+  double getSalarioH(){ 
+    return salarioHora; 
+  } 
+
+  void salDescont(){ 
+    salTot = salario - (falta * salarioHora); 
+  }
+  double getSalarioTot(){ 
+    return salTot; 
+  } 
+} 
+
+void main(){ 
+  var func = InfoFunc(); 
+  func.setSalario(10000); 
+  func.setDia(10); 
+
+  print('Salário: ${func.getSalario()}'); 
+  func.salH(); 
+  print("Salário por hora: R\$${func.getSalarioH().toStringAsFixed(2)} reais"); 
+  print('Dias faltados: ${func.getDia()}'); 
+  func.hFaltadas(); 
+  print("Total de horas faltadas: ${func.getFalta()}h"); 
+  func.salDescont(); 
+  print("Salário total: R\$${func.getSalarioTot().toStringAsFixed(2)} reais"); 
+} 
