@@ -1,0 +1,46 @@
+class Imc { 
+  late double altura, peso, resultado; 
+
+  void setAltura(double a){ 
+    altura = a; 
+  } 
+  double getAltura(){  
+    return altura;  
+  } 
+   
+  void setPeso(double p){ 
+    peso = p; 
+  } 
+  double getPeso(){ 
+    return peso; 
+  } 
+   
+  void setValor(){ 
+    resultado = peso/(altura*altura);  
+  } 
+  double getValor(){ 
+    return resultado; 
+  }   
+
+  void setFrase(){ 
+    resultado = peso/(altura*altura);  
+    if(resultado > 18.5 && resultado < 24.9){ 
+      print('Peso normal!'); 
+    } 
+    else { 
+      print('Peso não é normal!'); 
+    }
+  } 
+} 
+
+void main(){  
+  var calc = Imc();  
+  calc.setAltura(1.90);  
+  calc.setPeso(70);  
+
+  print('Altura: ${calc.getAltura().toStringAsFixed(2)}');  
+  print('Peso: ${calc.getPeso()}Kg');  
+  calc.setValor();  
+  print("IMC: ${calc.getValor().toStringAsFixed(2)}");   
+  calc.setFrase(); 
+} 
