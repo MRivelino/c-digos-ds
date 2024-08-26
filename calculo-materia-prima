@@ -1,0 +1,129 @@
+class PecaCorte{  
+  late double altMp, largMp, areaMp, altPcA, largPcA, areaPcA; 
+  late int quantPcA, quantPcB; 
+  late double quantSobraMp, altPcB, largPcB, areaPcB; 
+  
+// Calculo da matéria prima 
+  void setAltMP(double am){  
+    altMp = am;  
+  }  
+  double getAltMP(){  
+    return altMp;  
+  }     
+
+  void setLargMP(double lm){  
+    largMp = lm;  
+  } 
+  double getLargMP(){  
+    return largMp;  
+  }  
+
+  void aMP(){  
+    areaMp = altMp * largMp;  
+  }  
+  double getaMP(){  
+    return areaMp;  
+  }  
+
+// Calculo peça de corte A 
+  void setAltPCA(double lpa){  
+    altPcA = lpa;  
+  }  
+  double getAltPCA(){  
+    return altPcA;  
+  }     
+
+  void setLargPCA(double lpa){  
+    largPcA = lpa;  
+  }  
+  double getLargPCA(){  
+    return largPcA;  
+  }  
+
+  void aPCA(){  
+    areaPcA = altPcA * largPcA;  
+  }  
+  double getaPCA(){  
+    return areaPcA;  
+  }  
+
+// Calculo do tanto de peça A 
+  void quantPCA(){  
+    quantPcA = areaMp ~/ areaPcA;  
+  }  
+  int getquantPCA(){  
+    return quantPcA;  
+  }  
+
+// Quantidade que sobrou da matéria prima 
+  void quantSobraMP(){  
+    quantSobraMp = areaMp % areaPcA;  
+  }  
+  double getquantSobraMP(){  
+    return quantSobraMp;  
+  }  
+
+  // Calculo peça de corte B 
+  void setAltPCB(double lpb){  
+    altPcB = lpb;  
+  }  
+  double getAltPCB(){  
+    return altPcB;  
+  }     
+
+  void setLargPCB(double lpb){  
+    largPcB = lpb;  
+  }  
+  double getLargPCB(){  
+    return largPcB;  
+  }  
+
+  void aPCB(){  
+    areaPcB = altPcB * largPcB;  
+  }  
+  double getaPCB(){  
+    return areaPcB;  
+  } 
+
+  // Calculo do tanto de peça B 
+  void quantPCB(){  
+    quantPcB = quantSobraMp ~/ areaPcB;  
+  }  
+  int getquantPCB(){  
+    return quantPcB;  
+  } 
+}  
+
+void main(){  
+  var pc = PecaCorte();  
+  pc.setAltMP(10);  
+  pc.setLargMP(10);  
+  pc.setAltPCA(4);  
+  pc.setLargPCA(5); 
+  pc.setAltPCB(1);  
+  pc.setLargPCB(2); 
+
+  print('Altura da matéria prima: ${pc.getAltMP()}');  
+  print('Largura da matéria prima: ${pc.getLargMP()}'); 
+  pc.aMP();  
+  print("Área da matéria prima: ${pc.getaMP()}\n");  
+
+  print('Altura da peça de corte A: ${pc.getAltPCA()}');  
+  print('Largura da peça de corte A: ${pc.getLargPCA()}'); 
+  pc.aPCA();  
+  print("Área da peça de corte A: ${pc.getaPCA()}\n");  
+
+  pc.quantPCA(); 
+  print("Quantidade de peças A: ${pc.getquantPCA()}"); 
+
+  pc.quantSobraMP(); 
+  print("Sobra da matéria prima: ${pc.getquantSobraMP()}\n"); 
+
+  print('Altura da peça de corte B: ${pc.getAltPCB()}');  
+  print('Largura da peça de corte B: ${pc.getLargPCB()}'); 
+  pc.aPCB();  
+  print("Área da peça de corte B: ${pc.getaPCB()}\n");  
+
+  pc.quantPCB(); 
+  print("Quantidade de peças B: ${pc.getquantPCB()}"); 
+} 
