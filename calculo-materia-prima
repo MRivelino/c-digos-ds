@@ -119,11 +119,13 @@ void main(){
   pc.quantSobraMP(); 
   print("Sobra da matéria prima: ${pc.getquantSobraMP()}\n"); 
 
-  print('Altura da peça de corte B: ${pc.getAltPCB()}');  
-  print('Largura da peça de corte B: ${pc.getLargPCB()}'); 
-  pc.aPCB();  
-  print("Área da peça de corte B: ${pc.getaPCB()}\n");  
+  if(pc.getquantSobraMP()>0){
+    print('Altura da peça de corte B: ${pc.getAltPCB()}');  
+    print('Largura da peça de corte B: ${pc.getLargPCB()}'); 
+    pc.aPCB();  
+    print("Área da peça de corte B: ${pc.getaPCB()}\n");  
 
-  pc.quantPCB(); 
-  print("Quantidade de peças B: ${pc.getquantPCB()}"); 
+    pc.quantPCB(); 
+    print("Quantidade de peças B: ${pc.getquantPCB()}"); 
+  }
 } 
