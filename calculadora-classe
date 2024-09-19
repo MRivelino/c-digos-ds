@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(MyApp());
@@ -10,11 +11,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Center( 
-            child: Text('Calculadora', textAlign: TextAlign.center, style: TextStyle(fontSize: 40))
-          )
+          title: Center(
+            child: Text(
+              'Calculadora',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          backgroundColor: Colors.orange,
+          foregroundColor: Colors.white,
+          toolbarHeight: kToolbarHeight,
         ),
         body: SomadorForm(),
+        backgroundColor: Color(0xFF373739),
       ),
     );
   }
@@ -70,7 +82,7 @@ class _SomadorFormState extends State<SomadorForm> {
     }
   }
   
-    void _multiplicar() {
+   void _multiplicar() {
     final double? numero1 = double.tryParse(_numero1.text);
     final double? numero2 = double.tryParse(_numero2.text);
     Calculadora calc = Calculadora();
@@ -90,7 +102,7 @@ class _SomadorFormState extends State<SomadorForm> {
     }
   }
   
-    void _dividir() {
+   void _dividir() {
     final double? numero1 = double.tryParse(_numero1.text);
     final double? numero2 = double.tryParse(_numero2.text);
     Calculadora calc = Calculadora();
@@ -110,6 +122,106 @@ class _SomadorFormState extends State<SomadorForm> {
     }
   }
 
+  
+  void _elevar() {
+    final double? numero1 = double.tryParse(_numero1.text);
+    final double? numero2 = double.tryParse(_numero2.text);
+    Calculadora calc = Calculadora();
+
+    if (numero1 != null && numero2 != null) {
+      calc.num1 = numero1;
+      calc.num2 = numero2;
+      calc.elevar();
+
+      setState(() {
+        _resultado = 'Resultado: ${calc.resultado}';
+      });
+    } else {
+      setState(() {
+        _resultado = 'Por favor, insira números válidos.';
+      });
+    }
+  }
+
+  void _fatorar() {
+    final double? numero1 = double.tryParse(_numero1.text);
+    final double? numero2 = double.tryParse(_numero2.text);
+    Calculadora calc = Calculadora();
+
+    if (numero1 != null && numero2 != null) {
+      calc.num1 = numero1;
+      calc.num2 = numero2;
+      calc.fatorar();
+
+      setState(() {
+        _resultado = 'Resultado: ${calc.resultado}';
+      });
+    } else {
+      setState(() {
+        _resultado = 'Por favor, insira números válidos.';
+      });
+    }
+  }
+  
+  void _raiz() {
+    final double? numero1 = double.tryParse(_numero1.text);
+    final double? numero2 = double.tryParse(_numero2.text);
+    Calculadora calc = Calculadora();
+
+    if (numero1 != null && numero2 != null) {
+      calc.num1 = numero1;
+      calc.num2 = numero2;
+      calc.raiz();
+
+      setState(() {
+        _resultado = 'Resultado: ${calc.resultado}';
+      });
+    } else {
+      setState(() {
+        _resultado = 'Por favor, insira números válidos.';
+      });
+    }
+  }
+  
+   void _mmc() {
+    final double? numero1 = double.tryParse(_numero1.text);
+    final double? numero2 = double.tryParse(_numero2.text);
+    Calculadora calc = Calculadora();
+
+    if (numero1 != null && numero2 != null) {
+      calc.num1 = numero1;
+      calc.num2 = numero2;
+      calc.mmc();
+
+      setState(() {
+        _resultado = 'Resultado: ${calc.resultado}';
+      });
+    } else {
+      setState(() {
+        _resultado = 'Por favor, insira números válidos.';
+      });
+    }
+  }
+  
+   void _resto() {
+    final double? numero1 = double.tryParse(_numero1.text);
+    final double? numero2 = double.tryParse(_numero2.text);
+    Calculadora calc = Calculadora();
+
+    if (numero1 != null && numero2 != null) {
+      calc.num1 = numero1;
+      calc.num2 = numero2;
+      calc.resto();
+
+      setState(() {
+        _resultado = 'Resultado: ${calc.resultado}';
+      });
+    } else {
+      setState(() {
+        _resultado = 'Por favor, insira números válidos.';
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -133,22 +245,47 @@ class _SomadorFormState extends State<SomadorForm> {
             children: [
               ElevatedButton(
                 onPressed: _somar,
-                child: Text('+'),
+                child: Text('+', style: TextStyle(fontSize: 25)),
               ),
               SizedBox(width: 20), // Espaçamento entre os botões
               ElevatedButton(
                 onPressed: _subtrair,
-                child: Text('-'),
+                child: Text('-', style: TextStyle(fontSize: 25)),
               ),
               SizedBox(width: 20), // Espaçamento entre os botões
               ElevatedButton(
                 onPressed: _multiplicar,
-                child: Text('x'),
+                child: Text('x', style: TextStyle(fontSize: 25)),
               ),
               SizedBox(width: 20), // Espaçamento entre os botões
               ElevatedButton(
                 onPressed: _dividir,
-                child: Text('/'),
+                child: Text('/', style: TextStyle(fontSize: 25)),
+              ),
+              SizedBox(width: 20), // Espaçamento entre os botões
+              ElevatedButton(
+                onPressed: _elevar,
+                child: Text('^', style: TextStyle(fontSize: 25)),
+              ),
+              SizedBox(width: 20), // Espaçamento entre os botões
+              ElevatedButton(
+                onPressed: _fatorar,
+                child: Text('!', style: TextStyle(fontSize: 25)),
+              ),
+              SizedBox(width: 20), // Espaçamento entre os botões
+              ElevatedButton(
+                onPressed: _raiz,
+                child: Text('√', style: TextStyle(fontSize: 25)),
+              ),
+              SizedBox(width: 20), // Espaçamento entre os botões
+              ElevatedButton(
+                onPressed: _mmc,
+                child: Text('M', style: TextStyle(fontSize: 25)),
+              ),
+              SizedBox(width: 20), // Espaçamento entre os botões
+              ElevatedButton(
+                onPressed: _resto,
+                child: Text('%', style: TextStyle(fontSize: 25)),
               ),
             ],
           ),
@@ -189,13 +326,38 @@ class Calculadora {
     _resultado = num1 - num2;
   }
   
-  // Subtrair
+  // Multiplicar
   void multiplicar() {
     _resultado = num1 * num2;
   }
   
-  // Subtrair
+  // Dividir
   void dividir() {
     _resultado = num1 / num2;
+  }
+  
+    // Elevar
+  void elevar() {
+    _resultado = num1 + num2;
+  }
+
+  // Fatorar
+  void fatorar() {
+    _resultado = num1 - num2;
+  }
+  
+  // Raiz
+  void raiz() {
+    _resultado = num1 - num2;
+  }
+  
+  // MMC
+  void mmc() {
+    _resultado = (num1 * num2) ~/ calcularMDC(num1, num2);
+  }
+  
+  // Resto
+  void resto() {
+    _resultado = num1 % num2;
   }
 }
