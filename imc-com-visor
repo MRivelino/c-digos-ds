@@ -31,17 +31,18 @@ class _SomadorFormState extends State<SomadorForm> {
   final TextEditingController _controller2 = TextEditingController();
 
   String _resultado= '';
+  String _peso= '';
 
   void _imc() {
-    final double? peso = double.tryParse(_controller1.text);
-    final double? altura = double.tryParse(_controller2.text);
+    final double? altura = double.tryParse(_controller1.text);
+    final double? peso = double.tryParse(_controller2.text);
     if (peso != null && altura != null) {
       final double resultado = peso/(altura*altura);
       if(resultado > 18.5 && resultado < 24.9){ 
-        print('Peso normal!'); 
+        _peso = 'Peso normal!'; 
       } 
       else { 
-        print('Peso não é normal!'); 
+        _peso = 'Peso não é normal!'; 
       }
       setState(() {
         _resultado = 'Resultado: $resultado';
@@ -85,6 +86,8 @@ class _SomadorFormState extends State<SomadorForm> {
           ),
           SizedBox(height: 20),
           Text(_resultado, style: TextStyle(fontSize: 24)),
+          SizedBox(height: 20),
+          Text(_peso, style: TextStyle(fontSize: 24)),
         ],
       ),
     );
