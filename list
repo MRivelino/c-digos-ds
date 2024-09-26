@@ -1,0 +1,140 @@
+import 'package:flutter/material.dart';
+//inicia aplicação
+void main() {
+  runApp(MyApp());//cria e executa instância
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(//define titulo e home
+      title: 'Sample Input',
+      home: Forms(),
+    );
+  }
+}
+// classe formulário para entrada de dados
+class Forms extends StatefulWidget {
+  @override
+  FormsState createState() => FormsState();//instância
+}
+
+class FormsState extends State<Forms> {
+  //define conteúdo de listView
+  final List<String> items = ['Los Angeles Lakers', 'Golden State Warriors', 'San Antonio Spurs', 'Houston Rockets', 'Phoenix Suns', 'Denver Nuggets', 'Minnesota Timberwolves', 'Oklahoma City Thunder', 'Portland Trail Blazers', 'Utah Jazz', 'Los Angeles Clippers', 'Sacramento Kings', 'Dallas Mavericks', 'New Orleans Pelicans', 'Memphis Grizzlies'];
+  
+  final List<String> items2 = ['Miami Heat', 'Orlando Magic', 'Chicago Bulls', 'Cleveland Cavaliers', 'Philadelphia 76ers', 'Boston Celtics', 'New York Knicks', 'Brooklyn Nets', 'Toronto Raptors', 'Detroit Pistons', 'Indiana Pacers', 'Milwaukee Bucks', 'Charlotte Hornets', 'Atlanta Hawks', 'Washington Wizards',];
+  // define cores para mensagens de aviso
+  // informações de envio
+  String _result = "";
+  String _selectItem = "";
+  bool envio = false;
+
+  // obtém item selecionado e armazena
+  void changeSelectedItem(String e) {
+    setState(() {
+      _selectItem = e;
+      _result = _selectItem;
+    });
+  }
+
+    
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sample Input ListView'),
+      ),
+      body: Align(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            const Divider(),//linha divisória
+            const SizedBox(height: 16.0),
+            const Text(
+              'Times da NBA',
+              style: TextStyle(fontSize: 24.0, color: Colors.blue),
+            ),
+            const Divider(),// linha divisória
+            //Expanded( if view all items listview
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Oeste',
+                  style: TextStyle(fontSize: 20, color: Colors.blue),
+                ),
+                SizedBox(width: 280),
+                const Text(
+                  'Leste',
+                  style: TextStyle(fontSize: 20, color: Colors.blue),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 300,
+                  height: 400,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: ListView.builder(
+                    shrinkWrap: true, // if scroll
+                    itemCount: items.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        //leading: Image(image: items[index]),
+                        title: Text(items[index]),
+                        //subtitle: Text(items[index]),
+                        onTap: () {
+                          // Handle tap on the item
+                          print('Tapped on Item ${index + 1}');
+                          changeSelectedItem('Tapped on Item ${index + 1}');
+                        },
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(width: 30), 
+                Container(
+                  width: 300,
+                  height: 400,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: ListView.builder(
+                    shrinkWrap: true, // if scroll
+                    itemCount: items.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        //leading: Image(image: items[index]),
+                        title: Text(items2[index]),
+                        //subtitle: Text(items[index]),
+                        onTap: () {
+                          // Handle tap on the item
+                          print('Tapped on Item ${index + 1}');
+                          changeSelectedItem('Tapped on Item ${index + 1}');
+                        },
+                      );
+                    },
+                  ),
+                ),
+             ],
+            ),  
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
